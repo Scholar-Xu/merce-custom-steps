@@ -1,0 +1,421 @@
+{
+  "id": "c95d9e36-18a7-410f-8f13-a6b45201a976",
+  "name": "xyc_extract_json",
+  "flowType": "rtcflow",
+  "steps": [
+    {
+      "id": "source_1",
+      "name": "source_1",
+      "type": "source",
+      "otherConfigurations": {
+        "schema": {
+          "id": "cf1a22fa-e843-42a9-a901-5d124d01559a",
+          "name": "xyc_flink_log",
+          "description": "",
+          "createdTime": 1643170425142,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "timeMillis",
+              "type": "bigint",
+              "alias": ""
+            },
+            {
+              "name": "thread",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "level",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "loggerName",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "message",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "endOfBatch",
+              "type": "boolean",
+              "alias": ""
+            },
+            {
+              "name": "loggerFqcn",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "threadId",
+              "type": "bigint",
+              "alias": ""
+            },
+            {
+              "name": "threadPriority",
+              "type": "bigint",
+              "alias": ""
+            },
+            {
+              "name": "logdir",
+              "type": "string",
+              "alias": ""
+            }
+          ],
+          "tags": []
+        },
+        "brokers": "192.168.182.131:9092",
+        "parallelism": 0,
+        "groupId": "xyc.flink.log.group2",
+        "saslJaasConfig": "",
+        "type": "KAFKA",
+        "schemaName": "xyc_flink_log",
+        "encryptColumnsTemplate": [],
+        "nullValue": "",
+        "securityProtocol": "",
+        "datasetId": "f08fba4a-8720-4810-997b-a614471fca08",
+        "quoteChar": "\"",
+        "escapeChar": "\\",
+        "watermark": "",
+        "encryptColumns": "",
+        "zookeeper": "192.168.182.131:2181",
+        "offset": "",
+        "maxOutOfOrderness": 0,
+        "authLoginConfigFile": "",
+        "datasetName": "xyc_flink_log_kafka",
+        "format": "json",
+        "isKerberosSupport": "",
+        "saslMechanism": "",
+        "encryptKey": "",
+        "separator": ",",
+        "kerberosServiceName": "",
+        "kafkaFetchSize": "1048576",
+        "autoOffsetReset": "latest",
+        "ignoreParseErrors": false,
+        "watermarkFormat": "yyyy-MM-dd HH:mm:ss.SSS",
+        "schemaId": "cf1a22fa-e843-42a9-a901-5d124d01559a",
+        "topic": "xyc.flink.log",
+        "krb5ConfigFile": "",
+        "readFromOffset": "default",
+        "dataset": {
+          "id": "f08fba4a-8720-4810-997b-a614471fca08",
+          "name": "xyc_flink_log_kafka",
+          "createdTime": 1643170265000,
+          "lastUpdatedTime": 1643170265000,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "schemaId": "cf1a22fa-e843-42a9-a901-5d124d01559a",
+          "schemaName": "xyc_flink_log",
+          "sliceTime": "",
+          "sliceType": "H",
+          "expiredTime": 0,
+          "rowNumber": 0,
+          "byteSize": 0,
+          "analysisTime": 0,
+          "storage": "KAFKA",
+          "storageConfiguration": {
+            "quoteChar": "\"",
+            "escapeChar": "\\",
+            "brokers": "192.168.182.131:9092",
+            "encryptColumns": "",
+            "zookeeper": "192.168.182.131:2181",
+            "reader": "",
+            "groupId": "xyc.flink.log.group",
+            "authLoginConfigFile": "",
+            "format": "json",
+            "isKerberosSupport": false,
+            "saslMechanism": "",
+            "saslJaasConfig": "",
+            "clusterId": "",
+            "encryptKey": "",
+            "version": "",
+            "separator": ",",
+            "kerberosServiceName": "",
+            "encryptColumnsTemplate": [],
+            "expiredTime": 0,
+            "securityProtocol": "",
+            "topic": "xyc.flink.log",
+            "krb5ConfigFile": "",
+            "time": ""
+          }
+        },
+        "useAdvanceParser": false
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "timeMillis",
+            "type": "bigint",
+            "alias": ""
+          },
+          {
+            "name": "thread",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "level",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "loggerName",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "endOfBatch",
+            "type": "boolean",
+            "alias": ""
+          },
+          {
+            "name": "loggerFqcn",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "threadId",
+            "type": "bigint",
+            "alias": ""
+          },
+          {
+            "name": "threadPriority",
+            "type": "bigint",
+            "alias": ""
+          },
+          {
+            "name": "logdir",
+            "type": "string",
+            "alias": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "es_json_sink_1",
+      "name": "es_json_sink_1",
+      "type": "es_json_sink",
+      "otherConfigurations": {
+        "schema": {
+          "id": "cf1a22fa-e843-42a9-a901-5d124d01559a",
+          "name": "xyc_flink_log",
+          "description": "",
+          "createdTime": 1643170425158,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "timeMillis",
+              "type": "bigint",
+              "alias": ""
+            },
+            {
+              "name": "thread",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "level",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "loggerName",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "message",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "endOfBatch",
+              "type": "boolean",
+              "alias": ""
+            },
+            {
+              "name": "loggerFqcn",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "threadId",
+              "type": "bigint",
+              "alias": ""
+            },
+            {
+              "name": "threadPriority",
+              "type": "bigint",
+              "alias": ""
+            },
+            {
+              "name": "logdir",
+              "type": "string",
+              "alias": ""
+            }
+          ],
+          "tags": []
+        },
+        "jsonColumn": "",
+        "httpAuthUser": "admin",
+        "flushBackoffType": "EXPONENTIAL",
+        "type": "ElasticSearch",
+        "schemaName": "xyc_flink_log",
+        "httpAuthPassword": "admin",
+        "batchRows": 1000,
+        "flushBackoffEnable": true,
+        "clusterName": "elasticsearch",
+        "delayMillis": 50,
+        "datasetId": "bff3ea3f-2859-4094-97d8-3137a50ca28f",
+        "stepClassName": "com.inforefiner.custom.steps.sink.elasticsearch.ElasticsearchSinkStep",
+        "datasetName": "xyc_flink_log_ES",
+        "index": "xyc_flink_log",
+        "ignoreErrors": false,
+        "httpScheme": "http",
+        "indexType": "doc",
+        "maxRetries": 8,
+        "indexColumn": "",
+        "schemaId": "cf1a22fa-e843-42a9-a901-5d124d01559a",
+        "flushInterval": -1,
+        "ipAddresses": "192.168.182.131:9200",
+        "batchSize": 5,
+        "connectTimeout": 5000,
+        "socketTimeout": 60000,
+        "dataset": {
+          "id": "bff3ea3f-2859-4094-97d8-3137a50ca28f",
+          "name": "xyc_flink_log_ES",
+          "createdTime": 1643170032000,
+          "lastUpdatedTime": 1643170032000,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "schemaId": "cf1a22fa-e843-42a9-a901-5d124d01559a",
+          "schemaName": "xyc_flink_log",
+          "sliceTime": "",
+          "sliceType": "H",
+          "expiredTime": 0,
+          "rowNumber": 0,
+          "byteSize": 0,
+          "analysisTime": 0,
+          "storage": "ElasticSearch",
+          "storageConfiguration": {
+            "indexType": "doc",
+            "httpAuthPassword": "",
+            "httpAuthUser": "",
+            "clusterName": "elasticsearch",
+            "index": "xyc_flink_log",
+            "ipAddresses": "192.168.182.131:9200",
+            "time": "",
+            "clusterId": "",
+            "expiredTime": 0
+          }
+        }
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "timeMillis",
+            "type": "bigint",
+            "alias": ""
+          },
+          {
+            "name": "thread",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "level",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "loggerName",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "endOfBatch",
+            "type": "boolean",
+            "alias": ""
+          },
+          {
+            "name": "loggerFqcn",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "threadId",
+            "type": "bigint",
+            "alias": ""
+          },
+          {
+            "name": "threadPriority",
+            "type": "bigint",
+            "alias": ""
+          },
+          {
+            "name": "logdir",
+            "type": "string",
+            "alias": ""
+          }
+        ]
+      },
+      "libs": [
+        "/tmp/configJar//merce-custom-steps-0.1.4.jar"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "name": "",
+      "source": "source_1",
+      "sourceOutput": "output",
+      "target": "es_json_sink_1",
+      "targetInput": "input",
+      "input": "input"
+    }
+  ],
+  "parameters": [],
+  "udfs": [
+    {
+      "name": "STRING_APPEND",
+      "jarName": "/tmp/configJar//merce-custom-steps-0.1.4.jar",
+      "className": "com.inforefiner.rtcflow.udf.MyStringUDF",
+      "settings": {}
+    },
+    {
+      "name": "get_rowkey",
+      "jarName": "/tmp/configJar//gd-merce-custom-steps-1.4-jar-with-dependencies.jar",
+      "className": "com.nokia.rtcflow.udf.hbase.RowKeyUDF",
+      "settings": {
+        "url": "http://127.0.0.1:9999"
+      }
+    }
+  ],
+  "oid": "$null",
+  "creator": "admin",
+  "createTime": 1643103337000,
+  "lastModifier": "admin",
+  "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+  "version": 5,
+  "enabled": 1,
+  "tenantId": "e5188f23-d472-4b2d-9cfa-97a0d65994cf",
+  "resourceId": "6da4af7e-61e1-4cb6-81a2-4177a7937def",
+  "isHide": 0,
+  "expiredPeriod": 0
+}

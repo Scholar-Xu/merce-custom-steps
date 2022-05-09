@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO" monitorInterval="20">
+    <Properties>
+        <Property name="LOG_FILE">snowball-jdbc.log</Property>
+        <Property name="LOG_LEVEL_PATTERN">%5p</Property>
+        <Property name="LOG_PATTERN">[%d{yyyy-MM-dd HH:mm:ss.SSS}] %X{pid} ${LOG_LEVEL_PATTERN} [%T] --- %c{1}: %m%n %throwable{1000}</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+        <RollingFile name="Rolling_file" immediateFlush="true"
+                     fileName="${LOG_FILE}"
+                     filePattern="${LOG_FILE}.log.%d{yyyy-MM-dd}-%i">
+            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <Filters>
+                <ThresholdFilter level="TRACE" onMatch="ACCEPT"
+                                 onMismatch="DENY"/>
+            </Filters>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"
+                                           modulate="true"/>
+                <SizeBasedTriggeringPolicy size="250 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy fileIndex="nomax">
+                <Delete basePath="${LOG_PATH}">
+                    <IfFileName glob="${LOG_FILE}*"/>
+                    <IfLastModified age="30d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console" />
+<!--            <AppenderRef ref="Rolling_file" />-->
+        </Root>
+        <logger name="com.merce.woven.dataflow.flink.function.transform.merge.FinalStateMergeProcessFunction" level="DEBUG"/>
+        <logger name="com.merce.woven.dataflow.flink.function.window.RtcWindowFunction" level="DEBUG"/>
+        <logger name="com.merce.woven.dataflow.flink.function.ProcessFunctionProxy" level="DEBUG"/>
+        <logger name="com.merce.woven.dataflow.flink.function.lookup.MapDBLookupFunction" level="DEBUG"/>
+        <logger name="com.merce.woven.dataflow.flink.function.lookup.RedisLookupFunction" level="DEBUG"/>
+        <logger name="com.merce.woven.dataflow.flink.function.lookup.JDBCLookupFunction" level="INFO"/>
+        <logger name="com.merce.woven.dataflow.flink.function.lookup.AbstractLookupFunction" level="DEBUG"/>
+        <logger name="com.inforefiner.custom.util.ConvertUtil" level="INFO"/>
+        <logger name="com.merce.woven.dataflow.flink.function.state.StateAccumulateFunction" level="DEBUG"/>
+        <logger name="com.merce.woven.dataflow.flink.plugins.ftp.bucketer.FTPBucketingSink" level="DEBUG"/>
+        <logger name="com.inforefiner.custom.steps.sink.elasticsearch.ESSinkFunction" level="INFO"/>
+        <logger name="com.inforefiner.custom.steps.sink.jdbc.JDBCOutputFormat" level="DEBUG"/>
+        <logger name="com.merce.woven.dataflow.flink.steps.source.dummy.source.UrlClickDataSource" level="INFO"/>
+        <logger name="com.inforefiner.custom.steps.sink.jdbc.JDBCSinkFunction" level="DEBUG"/>
+        <logger name="com.inforefiner.custom.steps.parser.MultiMsgParserHexFunction" level="DEBUG"/>
+        <logger name="org.elasticsearch.client" level="INFO"/>
+	</Loggers>
+</Configuration>

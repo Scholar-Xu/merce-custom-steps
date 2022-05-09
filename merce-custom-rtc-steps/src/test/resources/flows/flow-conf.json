@@ -1,0 +1,36 @@
+{
+  "engine": "flink",
+  "debug": false,
+  "runtimeSettings": {
+    "master": "yarn",
+    "queue": "normal",
+    "driverMemory": 1024,
+    "executorMemory": 1024,
+    "executorCores": 1,
+    "parallelism": 1,
+    "savepointDir": "file:///tmp/flink-checkpoints/1.8.1.2091219",
+    "useLatestState": false,
+    "ignoreFailStat": true,
+    "kerberosEnable": false
+  },
+  "checkpointSettings": {
+    "checkpointEnable": true,
+    "checkpointMode": "exactly_once",
+    "checkpointDir": "file:///tmp/flink-checkpoints/1.8.1.2091219",
+    "checkpointAsync": true,
+    "checkpointStateBackend": "memory",
+    "checkpointIncremental": false,
+    "checkpointInterval": 60000,
+    "checkpointMinpause": 5000,
+    "checkpointTimeout": 600000,
+    "checkpointExternalSave": true
+  },
+  "restartStrategySettings": {
+    "restartMaxAttempts": 6,
+    "restartDelayInterval": 20
+  },
+  "latencyTrackingSettings": {
+    "latencyTrackingEnable": false,
+    "latencyTrackingInterval": 60001
+  }
+}

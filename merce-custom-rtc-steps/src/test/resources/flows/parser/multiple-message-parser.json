@@ -1,0 +1,424 @@
+{
+  "id": "a9839aab-ec92-465c-89ca-448429e4a60d",
+  "name": "shiy_message_parser",
+  "flowType": "rtcflow",
+  "steps": [
+    {
+      "id": "source_1",
+      "name": "source_1",
+      "type": "source",
+      "otherConfigurations": {
+        "schema": {
+          "id": "4c19e19d-ea90-4932-9757-18f03e3ca7dd",
+          "name": "shiy_one_field",
+          "description": "",
+          "createdTime": 1637811187435,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "message",
+              "type": "string",
+              "alias": ""
+            }
+          ],
+          "tags": []
+        },
+        "brokers": "192.168.1.82:9094",
+        "parallelism": 0,
+        "groupId": "shiy.flink.multiple.message.info4",
+        "dateUnit": "HOUR",
+        "saslJaasConfig": "",
+        "type": "KAFKA",
+        "schemaName": "shiy_one_field",
+        "encryptColumnsTemplate": [],
+        "nullValue": "",
+        "path": "/tmp/shiy/flink/shiy-url-click-hdfs",
+        "securityProtocol": "",
+        "datasetId": "bea12178-6005-486b-9fb6-0179044cb0fc",
+        "processOnce": false,
+        "quoteChar": "\"",
+        "escapeChar": "\\",
+        "watermark": "",
+        "encryptColumns": "",
+        "zookeeper": "info1:2181,info3:2181,info2:2181/info2_kafka",
+        "offset": "",
+        "maxOutOfOrderness": 0,
+        "authLoginConfigFile": "",
+        "datasetName": "shiy_one_filed_kafka",
+        "format": "string",
+        "isKerberosSupport": "",
+        "saslMechanism": "",
+        "encryptKey": "",
+        "separator": ",",
+        "partitionType": "DateFormat",
+        "kerberosServiceName": "",
+        "kafkaFetchSize": "1048576",
+        "autoOffsetReset": "latest",
+        "timeColumn": "",
+        "ignoreParseErrors": false,
+        "watermarkFormat": "yyyy-MM-dd HH:mm:ss.SSS",
+        "schemaId": "4c19e19d-ea90-4932-9757-18f03e3ca7dd",
+        "timeFormat": "yyyy-MM-dd HH:mm:ss.SSS",
+        "pathMode": "exact",
+        "header": "false",
+        "topic": "shiy.flink.multiple.message",
+        "krb5ConfigFile": "",
+        "interval": "3000",
+        "time": "s",
+        "readFromOffset": "earliest",
+        "dataset": {
+          "id": "bea12178-6005-486b-9fb6-0179044cb0fc",
+          "name": "shiy_one_filed_kafka",
+          "createdTime": 1634178057000,
+          "lastUpdatedTime": 1634178057000,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "schemaId": "4c19e19d-ea90-4932-9757-18f03e3ca7dd",
+          "schemaName": "shiy_one_field",
+          "sliceTime": "",
+          "sliceType": "H",
+          "expiredTime": 0,
+          "rowNumber": 0,
+          "byteSize": 0,
+          "analysisTime": 0,
+          "storage": "KAFKA",
+          "storageConfiguration": {
+            "quoteChar": "\"",
+            "escapeChar": "\\",
+            "brokers": "192.168.1.82:9094",
+            "encryptColumns": "",
+            "zookeeper": "info1:2181,info3:2181,info2:2181/info2_kafka",
+            "reader": "",
+            "groupId": "shiy.flink.multiple.message.info4",
+            "authLoginConfigFile": "",
+            "format": "csv",
+            "isKerberosSupport": false,
+            "saslMechanism": "",
+            "saslJaasConfig": "",
+            "clusterId": "",
+            "encryptKey": "",
+            "version": "",
+            "separator": ",",
+            "kerberosServiceName": "",
+            "encryptColumnsTemplate": [],
+            "expiredTime": 0,
+            "securityProtocol": "",
+            "topic": "shiy.flink.multiple.message",
+            "krb5ConfigFile": "",
+            "time": ""
+          }
+        },
+        "useAdvanceParser": false
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "message",
+            "type": "string",
+            "alias": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "rtc_multiple_message_parser_015_1",
+      "name": "rtc_multiple_message_parser_015_1",
+      "type": "rtc_multiple_message_parser_015",
+      "otherConfigurations": {
+        "headers": "CS_AIU_MTCx,CS_AIU_MTCy,CS_AIU_MTC",
+        "schema": {
+          "id": "4ad1ae05-50e7-4419-aabf-b606b1fd33ab",
+          "name": "shiy-url-click",
+          "description": "",
+          "createdTime": 1637811187436,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "header",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "userId",
+              "type": "int",
+              "alias": ""
+            },
+            {
+              "name": "username",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "clickTime",
+              "type": "timestamp",
+              "alias": ""
+            },
+            {
+              "name": "user_rank",
+              "type": "int",
+              "alias": ""
+            },
+            {
+              "name": "uuid_col",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "date_str",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "time_str",
+              "type": "string",
+              "alias": ""
+            }
+          ],
+          "tags": []
+        },
+        "stepClassName": "com.inforefiner.rtcflow.steps.parser.MultipleMessageParserStep",
+        "headerSeparator": "",
+        "schemaId": "4ad1ae05-50e7-4419-aabf-b606b1fd33ab",
+        "parallelism": 0,
+        "hex": false,
+        "schemaName": "shiy-url-click",
+        "messageSeparator": "\n",
+        "separator": ",",
+        "headerHex": false
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "message",
+            "type": "string",
+            "alias": ""
+          }
+        ]
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "header",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "userId",
+            "type": "int",
+            "alias": ""
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "clickTime",
+            "type": "timestamp",
+            "alias": ""
+          },
+          {
+            "name": "user_rank",
+            "type": "int",
+            "alias": ""
+          },
+          {
+            "name": "uuid_col",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "date_str",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "time_str",
+            "type": "string",
+            "alias": ""
+          }
+        ]
+      },
+      "libs": [
+        "/tmp/configJar//merce-custom-steps-0.1.5.jar"
+      ]
+    },
+    {
+      "id": "sink_1",
+      "name": "sink_1",
+      "type": "sink_console",
+      "otherConfigurations": {
+        "schema": {
+          "id": "4ad1ae05-50e7-4419-aabf-b606b1fd33ab",
+          "name": "shiy-url-click",
+          "description": "",
+          "createdTime": 1637811187436,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "header",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "userId",
+              "type": "int",
+              "alias": ""
+            },
+            {
+              "name": "username",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "clickTime",
+              "type": "timestamp",
+              "alias": ""
+            },
+            {
+              "name": "user_rank",
+              "type": "int",
+              "alias": ""
+            },
+            {
+              "name": "uuid_col",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "date_str",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "time_str",
+              "type": "string",
+              "alias": ""
+            }
+          ],
+          "tags": []
+        }
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "header",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "userId",
+            "type": "int",
+            "alias": ""
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "clickTime",
+            "type": "timestamp",
+            "alias": ""
+          },
+          {
+            "name": "user_rank",
+            "type": "int",
+            "alias": ""
+          },
+          {
+            "name": "uuid_col",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "date_str",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "time_str",
+            "type": "string",
+            "alias": ""
+          }
+        ]
+      },
+      "x": 1153,
+      "y": 338,
+      "uiConfigurations": {
+        "input": ["input"]
+      }
+    }
+  ],
+  "links": [
+    {
+      "name": "",
+      "source": "source_1",
+      "sourceOutput": "output",
+      "target": "rtc_multiple_message_parser_015_1",
+      "targetInput": "input",
+      "input": "input"
+    },
+    {
+      "name": "",
+      "source": "rtc_multiple_message_parser_015_1",
+      "sourceOutput": "output",
+      "target": "sink_1",
+      "targetInput": "input",
+      "input": "input"
+    }
+  ],
+  "parameters": [],
+  "udfs": [
+    {
+      "name": "STRING_APPEND",
+      "jarName": "/tmp/configJar//merce-custom-steps-0.1.4.jar",
+      "className": "com.inforefiner.rtcflow.udf.MyStringUDF",
+      "settings": {}
+    },
+    {
+      "name": "get_rowkey",
+      "jarName": "/tmp/configJar//gd-merce-custom-steps-1.4-jar-with-dependencies.jar",
+      "className": "com.nokia.rtcflow.udf.hbase.RowKeyUDF",
+      "settings": {
+        "url": "http://127.0.0.1:9999"
+      }
+    }
+  ],
+  "oid": "$null",
+  "creator": "admin",
+  "createTime": 1634177628000,
+  "lastModifier": "admin",
+  "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+  "version": 8,
+  "enabled": 1,
+  "tenantId": "e5188f23-d472-4b2d-9cfa-97a0d65994cf",
+  "resourceId": "8f182085-e539-4a3d-86a3-e6fd1b9366ed",
+  "isHide": 0,
+  "expiredPeriod": 0
+}

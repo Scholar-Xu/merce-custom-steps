@@ -1,0 +1,469 @@
+{
+  "id": "6efede3d-0138-4891-b80b-d56bd6eb0906",
+  "name": "shiy-custom_es_sink",
+  "flowType": "rtcflow",
+  "steps": [
+    {
+      "id": "source_1",
+      "name": "source_1",
+      "type": "source",
+      "otherConfigurations": {
+        "schema": {
+          "id": "54c769a7-24ad-4382-b365-92bad72900e3",
+          "name": "shiy-json-schema",
+          "description": "",
+          "createdTime": 1612255767171,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "id",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "phones[0]",
+              "type": "decimal(24,2)",
+              "alias": "phone_0"
+            },
+            {
+              "name": "phones[1]",
+              "type": "decimal(24,2)",
+              "alias": "phone_1"
+            },
+            {
+              "name": "address.firstAddress.address1",
+              "type": "string",
+              "alias": "first_address_address_1"
+            },
+            {
+              "name": "address.firstAddress.address2",
+              "type": "string",
+              "alias": "first_address_address_2"
+            },
+            {
+              "name": "address.secondAddress.address1",
+              "type": "string",
+              "alias": "second_address"
+            }
+          ],
+          "tags": []
+        },
+        "brokers": "192.168.1.17:9092",
+        "reader": "",
+        "parallelism": 0,
+        "groupId": "shiy-json-dataset",
+        "columnsItems": 0,
+        "type": "KAFKA",
+        "schemaName": "shiy-json-schema",
+        "nullValue": "",
+        "datasetId": "db963e2a-9034-481d-8d99-82269b9fd750",
+        "quoteChar": "\"",
+        "escapeChar": "\\",
+        "watermark": "",
+        "encryptColumns": "",
+        "zookeeper": "info1:2181,info3:2181,info2:2181/info2_kafka",
+        "offset": "",
+        "maxOutOfOrderness": 0,
+        "datasetName": "shiy-json-dataset",
+        "format": "json",
+        "isKerberosSupport": false,
+        "encryptKey": "",
+        "version": "",
+        "separator": ",",
+        "kafkaFetchSize": "1048576",
+        "autoOffsetReset": "latest",
+        "ignoreParseErrors": false,
+        "watermarkFormat": "yyyy-MM-dd HH:mm:ss.SSS",
+        "schemaId": "54c769a7-24ad-4382-b365-92bad72900e3",
+        "pathMode": "exact",
+        "topic": "shiy.flink.es.json",
+        "readFromOffset": "earliest",
+        "dataset": {
+          "id": "db963e2a-9034-481d-8d99-82269b9fd750",
+          "name": "shiy-json-dataset",
+          "createdTime": 1612253960000,
+          "lastUpdatedTime": 1612254106000,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "schemaId": "54c769a7-24ad-4382-b365-92bad72900e3",
+          "schemaName": "shiy-json-schema",
+          "sliceTime": "",
+          "sliceType": "H",
+          "expiredTime": 0,
+          "storage": "KAFKA",
+          "storageConfiguration": {
+            "quoteChar": "\"",
+            "escapeChar": "\\",
+            "brokers": "192.168.1.82:9094",
+            "encryptColumns": "",
+            "zookeeper": "info1:2181,info3:2181,info2:2181/info2_kafka",
+            "reader": "",
+            "groupId": "shiy-json-dataset",
+            "columnsItems": 0,
+            "format": "json",
+            "isKerberosSupport": false,
+            "encryptKey": "",
+            "version": "",
+            "separator": ",",
+            "pathMode": "exact",
+            "topic": "shiy.flink.json"
+          }
+        },
+        "useAdvanceParser": true
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "id",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "phone_0",
+            "type": "decimal(24,2)",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "phone_1",
+            "type": "decimal(24,2)",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "first_address_address_1",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "first_address_address_2",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "second_address",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "transform_1",
+      "name": "transform_1",
+      "type": "transform",
+      "otherConfigurations": {
+        "parallelism": 2,
+        "udfs": [
+          {
+            "name": "get_hbasetable",
+            "jarName": "/tmp/configJar//merce-custom-steps-1.3.jar",
+            "className": "com.inforefiner.rtcflow.udf.hbase.GetHBaseTableUDF",
+            "settings": {
+              "url": ""
+            }
+          },
+          {
+            "name": "get_rowkey",
+            "jarName": "/tmp/configJar//merce-custom-steps-1.3.jar",
+            "className": "com.inforefiner.rtcflow.udf.hbase.RowKeyUDF",
+            "settings": {
+              "url": "http://127.0.0.1:12345/api"
+            }
+          }
+        ],
+        "expressions": [
+          {
+            "expression": "concat('flink-es-sink-', name) as index"
+          }
+        ]
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "id",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "phone_0",
+            "type": "decimal(24,2)",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "phone_1",
+            "type": "decimal(24,2)",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "first_address_address_1",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "first_address_address_2",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "second_address",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          }
+        ]
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "id",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "phone_0",
+            "type": "decimal(24,2)",
+            "alias": ""
+          },
+          {
+            "name": "phone_1",
+            "type": "decimal(24,2)",
+            "alias": ""
+          },
+          {
+            "name": "first_address_address_1",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "first_address_address_2",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "second_address",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "index",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          }
+        ]
+      },
+      "libs": [
+        "/tmp/configJar//merce-custom-steps-1.3.jar"
+      ]
+    },
+    {
+      "id": "rtc_es_sink_1",
+      "name": "rtc_es_sink_1",
+      "type": "rtc_es_sink",
+      "otherConfigurations": {
+        "schema": {
+          "id": "54c769a7-24ad-4382-b365-92bad72900e3",
+          "name": "shiy-json-schema",
+          "description": "",
+          "createdTime": 1612255767176,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "id",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "second_address",
+              "type": "string",
+              "alias": "",
+              "description": ""
+            }
+          ],
+          "tags": []
+        },
+        "httpAuthUser": "admin",
+        "flushBackoffType": "EXPONENTIAL",
+        "columnsItems": 0,
+        "type": "ElasticSearch",
+        "schemaName": "shiy-json-schema",
+        "httpAuthPassword": "admin",
+        "flushBackoffEnable": true,
+        "clusterName": "elasticsearch",
+        "delayMillis": 50,
+        "datasetId": "2a56a622-318d-4103-b881-a17fad91aa7c",
+        "encryptColumns": "",
+        "stepClassName": "com.inforefiner.rtcflow.steps.sink.elasticsearch.ElasticsearchSinkStep",
+        "datasetName": "shiy-es-sink",
+        "index": "flink-custom-es-sink",
+        "encryptKey": "",
+        "httpScheme": "http",
+        "indexType": "test",
+        "maxRetries": 8,
+        "indexColumn": "index",
+        "jsonColumn": "second_address",
+        "schemaId": "54c769a7-24ad-4382-b365-92bad72900e3",
+        "pathMode": "exact",
+        "ipAddresses": "192.168.1.17:9200",
+        "batchSize": 5,
+        "batchRows": 10000,
+        "dataset": {
+          "id": "2a56a622-318d-4103-b881-a17fad91aa7c",
+          "name": "shiy-es-sink",
+          "createdTime": 1612244754000,
+          "lastUpdatedTime": 1612254111000,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "schemaId": "54c769a7-24ad-4382-b365-92bad72900e3",
+          "schemaName": "shiy-json-schema",
+          "sliceTime": "index",
+          "sliceType": "H",
+          "expiredTime": 0,
+          "storage": "ElasticSearch",
+          "storageConfiguration": {
+            "indexType": "test",
+            "httpAuthPassword": "admin",
+            "encryptColumns": "",
+            "httpAuthUser": "admin",
+            "clusterName": "elasticsearch",
+            "columnsItems": 0,
+            "pathMode": "exact",
+            "index": "flink-custom-es-sink",
+            "ipAddresses": "192.168.1.82:9204",
+            "encryptKey": ""
+          }
+        }
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "id",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "phone_0",
+            "type": "decimal(24,2)",
+            "alias": ""
+          },
+          {
+            "name": "phone_1",
+            "type": "decimal(24,2)",
+            "alias": ""
+          },
+          {
+            "name": "first_address_address_1",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "first_address_address_2",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "second_address",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "index",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          }
+        ]
+      },
+      "libs": [
+        "/tmp/configJar//merce-custom-steps-0.1.1.jar"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "name": "",
+      "source": "source_1",
+      "sourceOutput": "output",
+      "target": "transform_1",
+      "targetInput": "input",
+      "input": "input"
+    },
+    {
+      "name": "",
+      "source": "transform_1",
+      "sourceOutput": "output",
+      "target": "rtc_es_sink_1",
+      "targetInput": "input",
+      "input": "input"
+    }
+  ],
+  "parameters": [],
+  "udfs": [
+    {
+      "name": "get_hbasetable",
+      "jarName": "/tmp/configJar//merce-custom-steps-1.3.jar",
+      "className": "com.inforefiner.rtcflow.udf.hbase.GetHBaseTableUDF",
+      "settings": {
+        "url": ""
+      }
+    },
+    {
+      "name": "get_rowkey",
+      "jarName": "/tmp/configJar//merce-custom-steps-1.3.jar",
+      "className": "com.inforefiner.rtcflow.udf.hbase.RowKeyUDF",
+      "settings": {
+        "url": "http://127.0.0.1:12345/api"
+      }
+    }
+  ],
+  "oid": "$null",
+  "creator": "admin",
+  "createTime": 1612238405000,
+  "lastModifier": "admin",
+  "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+  "version": 11,
+  "enabled": 1,
+  "tenantId": "e5188f23-d472-4b2d-9cfa-97a0d65994cf",
+  "resourceId": "21eca80b-a01e-4af4-b734-eadec71c0f45",
+  "isHide": 0,
+  "expiredPeriod": 0
+}

@@ -1,0 +1,270 @@
+{
+  "id": "6efede3d-0138-4891-b80b-d56bd6eb0906",
+  "name": "shiy-custom_es_sink",
+  "flowType": "rtcflow",
+  "steps": [
+    {
+      "id": "source_1",
+      "name": "source_1",
+      "type": "source",
+      "otherConfigurations": {
+        "schema": {
+          "id": "54c769a7-24ad-4382-b365-92bad72900e3",
+          "name": "shiy-json-schema",
+          "description": "",
+          "createdTime": 1612255767171,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "action",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "table",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "action_time",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "id",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "random_id",
+              "type": "string",
+              "alias": ""
+            }
+          ],
+          "tags": []
+        },
+        "brokers": "192.168.1.82:9094",
+        "reader": "",
+        "parallelism": 0,
+        "groupId": "shiy-json-dataset",
+        "columnsItems": 0,
+        "type": "KAFKA",
+        "schemaName": "shiy-json-schema",
+        "nullValue": "",
+        "datasetId": "db963e2a-9034-481d-8d99-82269b9fd750",
+        "quoteChar": "\"",
+        "escapeChar": "\\",
+        "watermark": "",
+        "encryptColumns": "",
+        "zookeeper": "info1:2181,info3:2181,info2:2181/info2_kafka",
+        "offset": "",
+        "maxOutOfOrderness": 0,
+        "datasetName": "shiy-json-dataset",
+        "format": "csv",
+        "isKerberosSupport": false,
+        "encryptKey": "",
+        "version": "",
+        "separator": ",",
+        "kafkaFetchSize": "1048576",
+        "autoOffsetReset": "latest",
+        "ignoreParseErrors": false,
+        "watermarkFormat": "yyyy-MM-dd HH:mm:ss.SSS",
+        "schemaId": "54c769a7-24ad-4382-b365-92bad72900e3",
+        "pathMode": "exact",
+        "topic": "shiy.flink.custom.jdbc",
+        "readFromOffset": "latest",
+        "dataset": {
+          "id": "db963e2a-9034-481d-8d99-82269b9fd750",
+          "name": "shiy-json-dataset",
+          "createdTime": 1612253960000,
+          "lastUpdatedTime": 1612254106000,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "schemaId": "54c769a7-24ad-4382-b365-92bad72900e3",
+          "schemaName": "shiy-json-schema",
+          "sliceTime": "",
+          "sliceType": "H",
+          "expiredTime": 0,
+          "storage": "KAFKA",
+          "storageConfiguration": {
+            "quoteChar": "\"",
+            "escapeChar": "\\",
+            "brokers": "192.168.1.82:9094",
+            "encryptColumns": "",
+            "zookeeper": "info1:2181,info3:2181,info2:2181/info2_kafka",
+            "reader": "",
+            "groupId": "shiy-json-dataset",
+            "columnsItems": 0,
+            "format": "csv",
+            "isKerberosSupport": false,
+            "encryptKey": "",
+            "version": "",
+            "separator": ",",
+            "pathMode": "exact",
+            "topic": "shiy.flink.json"
+          }
+        },
+        "useAdvanceParser": false
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "action",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "table",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "action_time",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "random_id",
+            "type": "string",
+            "alias": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "jdbc_upsert_sink_1",
+      "name": "jdbc_upsert_sink_1",
+      "type": "jdbc_upsert_sink",
+      "otherConfigurations": {
+        "schema": {
+          "id": "54c769a7-24ad-4382-b365-92bad72900e3",
+          "name": "shiy-json-schema",
+          "description": "",
+          "createdTime": 1612255767176,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "action",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "table",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "action_time",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "id",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "alias": ""
+            },
+            {
+              "name": "random_id",
+              "type": "string",
+              "alias": ""
+            }
+          ],
+          "tags": []
+        },
+        "stepClassName": "com.inforefiner.rtcflow.steps.sink.jdbc.JDBCSinkStep",
+        "datasetName": "shiy-jdbc-sink",
+        "parallelism": "1",
+        "type": "jdbc",
+        "table": "shiy_custom_jdbc_sink",
+        "username": "default",
+        "password": "",
+        "url": "jdbc:snowball://192.168.1.89:8123/lqr",
+        "driver": "com.inforefiner.snowball.SnowballDriver",
+        "batchSize": "5",
+        "actionColumn": "action",
+        "primaryKeyColumns": ["id", "name"]
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "action",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "table",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "action_time",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "id",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "alias": ""
+          },
+          {
+            "name": "random_id",
+            "type": "string",
+            "alias": ""
+          }
+        ]
+      },
+      "libs": []
+    }
+  ],
+  "links": [
+    {
+      "name": "",
+      "source": "source_1",
+      "sourceOutput": "output",
+      "target": "jdbc_upsert_sink_1",
+      "targetInput": "input",
+      "input": "input"
+    }
+  ],
+  "parameters": [],
+  "udfs": [],
+  "oid": "$null",
+  "creator": "admin",
+  "createTime": 1612238405000,
+  "lastModifier": "admin",
+  "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+  "version": 11,
+  "enabled": 1,
+  "tenantId": "e5188f23-d472-4b2d-9cfa-97a0d65994cf",
+  "resourceId": "21eca80b-a01e-4af4-b734-eadec71c0f45",
+  "isHide": 0,
+  "expiredPeriod": 0
+}

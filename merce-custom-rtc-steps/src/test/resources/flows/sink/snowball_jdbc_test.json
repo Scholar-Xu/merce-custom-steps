@@ -1,0 +1,458 @@
+{
+  "id": "62397c3d-4b09-4e94-bb96-f342e6c77a5b",
+  "name": "shiy_test_custom_jdbc_sink_不要动",
+  "flowType": "rtcflow",
+  "steps": [
+    {
+      "id": "source_1",
+      "name": "source_1",
+      "type": "source_dummy",
+      "storage": "DUMMY",
+      "otherConfigurations": {
+        "dataType": "userClick",
+        "parallelism": 1
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "userId",
+            "type": "int",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "clickTime",
+            "type": "timestamp",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "user_rank",
+            "type": "int",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "uuid",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "dateStr",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "timeStr",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "custom_sink_jdbc_upsert_1",
+      "name": "custom_sink_jdbc_upsert_1",
+      "type": "custom_sink_jdbc_upsert",
+      "otherConfigurations": {
+        "schema": {
+          "id": "0dca608e-dc1e-423e-830c-12fea3e62b7b",
+          "name": "shiy-custom-jdbc-sink",
+          "description": "",
+          "createdTime": 1619518238848,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "version": 0,
+          "expiredTime": 0,
+          "fields": [
+            {
+              "name": "userId",
+              "type": "int",
+              "alias": "",
+              "description": ""
+            },
+            {
+              "name": "username",
+              "type": "string",
+              "alias": "",
+              "description": ""
+            },
+            {
+              "name": "url",
+              "type": "string",
+              "alias": "",
+              "description": ""
+            },
+            {
+              "name": "clickTime",
+              "type": "timestamp",
+              "alias": "",
+              "description": ""
+            },
+            {
+              "name": "rank",
+              "type": "int",
+              "alias": "",
+              "description": ""
+            },
+            {
+              "name": "uuid",
+              "type": "string",
+              "alias": "",
+              "description": ""
+            },
+            {
+              "name": "dateStr",
+              "type": "string",
+              "alias": "",
+              "description": ""
+            },
+            {
+              "name": "timeStr",
+              "type": "string",
+              "alias": "",
+              "description": ""
+            }
+          ],
+          "tags": []
+        },
+        "dateFormat": "",
+        "parallelism": 8,
+        "columnsItems": 0,
+        "dateUnit": "HOUR",
+        "datePeriod": "",
+        "type": "JDBC",
+        "schemaName": "shiy-custom-jdbc-sink",
+        "partitionList": "",
+        "path": "/tmp/shiy/flink/shiy-custom-jdbc-sink",
+        "password": "",
+        "primaryKeyNames": [
+          "name"
+        ],
+        "relativePath": "/tmp/shiy/flink/shiy-custom-jdbc-sink",
+        "datasetId": "5a4096b9-5edc-43a7-a2cd-b08075d284a0",
+        "table": "shiy_custom_jdbc_sink_distributed",
+        "ignoreRow": 0,
+        "actionColumn": "action",
+        "quoteChar": "\"",
+        "escapeChar": "\\",
+        "hdfsPartitionColumn": "",
+        "encryptColumns": "",
+        "stepClassName": "com.inforefiner.rtcflow.steps.sink.jdbc.JDBCSinkStep",
+        "datasetName": "shiy-custom-jdbc-sink",
+        "format": "csv",
+        "dateFrom": "",
+        "encryptKey": "",
+        "separator": ",",
+        "partitionType": "DateFormat",
+        "url": "jdbc:snowball://192.168.1.89:8123,192.168.1.97:8123,192.168.1.98:8123/lqr",
+        "primaryKeyColumns": [
+          "name_copy"
+        ],
+        "driver": "com.inforefiner.snowball.SnowballDriver",
+        "schemaId": "0dca608e-dc1e-423e-830c-12fea3e62b7b",
+        "pathMode": "exact",
+        "dateTo": "",
+        "header": "false",
+        "batchSize": "10",
+        "dataset": {
+          "id": "5a4096b9-5edc-43a7-a2cd-b08075d284a0",
+          "name": "shiy-custom-jdbc-sink",
+          "createdTime": 1617970682000,
+          "lastUpdatedTime": 1617970682000,
+          "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+          "schemaId": "0dca608e-dc1e-423e-830c-12fea3e62b7b",
+          "schemaName": "shiy-custom-jdbc-sink",
+          "sliceTime": "",
+          "sliceType": "H",
+          "expiredTime": 0,
+          "storage": "HDFS",
+          "storageConfiguration": {
+            "quoteChar": "\"",
+            "escapeChar": "\\",
+            "hdfsPartitionColumn": "",
+            "encryptColumns": "",
+            "dateFormat": "",
+            "columnsItems": 0,
+            "format": "csv",
+            "dateUnit": "HOUR",
+            "datePeriod": "",
+            "dateFrom": "",
+            "encryptKey": "",
+            "separator": ",",
+            "partitionType": "DateFormat",
+            "partitionList": "",
+            "path": "/tmp/shiy/flink/shiy-custom-jdbc-sink",
+            "relativePath": "/tmp/shiy/flink/shiy-custom-jdbc-sink",
+            "pathMode": "exact",
+            "dateTo": "",
+            "header": "false",
+            "ignoreRow": 0
+          }
+        },
+        "username": "default"
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "userId",
+            "type": "int",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "clickTime",
+            "type": "timestamp",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "rank",
+            "type": "int",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "uuid",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "dateStr",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "timeStr",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "id_copy",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "name_copy",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "action",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          }
+        ]
+      },
+      "libs": [
+        "/tmp/configJar//merce-custom-steps-0.1.3.jar"
+      ]
+    },
+    {
+      "id": "transform_1",
+      "name": "transform_1",
+      "type": "transform",
+      "otherConfigurations": {
+        "parallelism": 1,
+        "udfs": [],
+        "expressions": [
+          {
+            "expression": "'I' as action"
+          },
+          {
+            "expression": "userId as id_copy"
+          },
+          {
+            "expression": "username as name_copy"
+          }
+        ]
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "userId",
+            "type": "int",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "clickTime",
+            "type": "timestamp",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "user_rank",
+            "type": "int",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "uuid",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "dateStr",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "timeStr",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          }
+        ]
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "userId",
+            "type": "int",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "username",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "url",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "clickTime",
+            "type": "timestamp",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "user_rank",
+            "type": "int",
+            "alias": "rank",
+            "description": ""
+          },
+          {
+            "name": "uuid",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "dateStr",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "timeStr",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "id_copy",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "name_copy",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          },
+          {
+            "name": "action",
+            "type": "string",
+            "alias": "",
+            "description": ""
+          }
+        ]
+      },
+      "libs": []
+    }
+  ],
+  "links": [
+    {
+      "name": "",
+      "source": "transform_1",
+      "sourceOutput": "output",
+      "target": "custom_sink_jdbc_upsert_1",
+      "targetInput": "input",
+      "input": "input"
+    },
+    {
+      "name": "",
+      "source": "source_1",
+      "sourceOutput": "output",
+      "target": "transform_1",
+      "targetInput": "input",
+      "input": "input"
+    }
+  ],
+  "parameters": [],
+  "udfs": [],
+  "oid": "$null",
+  "creator": "admin",
+  "createTime": 1617970349000,
+  "lastModifier": "admin",
+  "owner": "83f2ad7f-1d9f-4ad0-953f-db8e7d285320",
+  "version": 14,
+  "enabled": 1,
+  "tenantId": "e5188f23-d472-4b2d-9cfa-97a0d65994cf",
+  "resourceId": "21eca80b-a01e-4af4-b734-eadec71c0f45",
+  "isHide": 0,
+  "expiredPeriod": 0
+}

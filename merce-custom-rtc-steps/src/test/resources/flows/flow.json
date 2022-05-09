@@ -1,0 +1,198 @@
+{
+  "id": "4028ea946c9f14e9016c9f164f4f0000",
+  "name": "streamflow_name",
+  "createTime": 1565324234000,
+  "steps": [
+    {
+      "id": "source_1",
+      "name": "source_1",
+      "type": "source_hdfs",
+      "storage": "HDFS",
+      "otherConfigurations": {
+        "quoteChar": "\"",
+        "path": "/tmp/shiy/step/students.txt",
+        "escapeChar": "\\",
+        "format": "csv",
+        "separator": ","
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "sId",
+            "type": "string",
+            "alias": "sId",
+            "description": ""
+          },
+          {
+            "name": "sName",
+            "type": "string",
+            "alias": "sName",
+            "description": ""
+          },
+          {
+            "name": "sex",
+            "type": "string",
+            "alias": "sex",
+            "description": ""
+          },
+          {
+            "name": "age",
+            "type": "int",
+            "alias": "age",
+            "description": ""
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "alias": "class",
+            "description": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "filter_1",
+      "name": "filter_1",
+      "type": "filter",
+      "otherConfigurations": {
+        "condition": "age > 22"
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "sId",
+            "type": "string",
+            "alias": "sId",
+            "description": ""
+          },
+          {
+            "name": "sName",
+            "type": "string",
+            "alias": "sName",
+            "description": ""
+          },
+          {
+            "name": "sex",
+            "type": "string",
+            "alias": "sex",
+            "description": ""
+          },
+          {
+            "name": "age",
+            "type": "int",
+            "alias": "age",
+            "description": ""
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "alias": "class",
+            "description": ""
+          }
+        ]
+      },
+      "outputConfigurations": {
+        "output": [
+          {
+            "name": "sId",
+            "type": "string",
+            "alias": "sId",
+            "description": ""
+          },
+          {
+            "name": "sName",
+            "type": "string",
+            "alias": "sName",
+            "description": ""
+          },
+          {
+            "name": "sex",
+            "type": "string",
+            "alias": "sex",
+            "description": ""
+          },
+          {
+            "name": "age",
+            "type": "int",
+            "alias": "age",
+            "description": ""
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "alias": "class",
+            "description": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "sink_1",
+      "name": "sink_1",
+      "type": "sink_hdfs",
+      "otherConfigurations": {
+        "schema": "shiy_student_schema",
+        "quoteChar": "\"",
+        "path": "/tmp/shiy/streaming/hdfs_2_hdfs",
+        "escapeChar": "\\",
+        "schemaId": "20fde6d4-fe19-43d6-bcde-aa27c95f0119",
+        "format": "csv",
+        "datasetId": "98d8f90e-3956-4a89-9093-49ad247b4192",
+        "dataset": "shiy_student_dataset_jdbc_output",
+        "separator": ","
+      },
+      "inputConfigurations": {
+        "input": [
+          {
+            "name": "sId",
+            "type": "string",
+            "alias": "sId",
+            "description": ""
+          },
+          {
+            "name": "sName",
+            "type": "string",
+            "alias": "sName",
+            "description": ""
+          },
+          {
+            "name": "sex",
+            "type": "string",
+            "alias": "sex",
+            "description": ""
+          },
+          {
+            "name": "age",
+            "type": "int",
+            "alias": "age",
+            "description": ""
+          },
+          {
+            "name": "class",
+            "type": "string",
+            "alias": "class",
+            "description": ""
+          }
+        ]
+      }
+    }
+  ],
+  "links": [
+    {
+      "name": "link_2",
+      "source": "filter_1",
+      "sourceOutput": "output",
+      "target": "sink_1",
+      "targetInput": "input",
+      "input": "input"
+    },
+    {
+      "name": "link_1",
+      "source": "source_1",
+      "sourceOutput": "output",
+      "target": "filter_1",
+      "targetInput": "input",
+      "input": "input"
+    }
+  ]
+}
