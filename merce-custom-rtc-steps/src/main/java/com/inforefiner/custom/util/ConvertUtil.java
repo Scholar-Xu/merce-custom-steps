@@ -82,6 +82,7 @@ public final class ConvertUtil implements Serializable {
             case "binary":
                 return StringUtils.isEmpty(value) ? "" : Byte.parseByte(value);
             case "decimal":
+            case "bigdecimal":
                 return StringUtils.isEmpty(value) ? BigDecimal.ZERO : new BigDecimal(value);
             default:
                 throw new RuntimeException("Unsupported type " + dataType);
@@ -130,6 +131,7 @@ public final class ConvertUtil implements Serializable {
             case "binary":
                 return "";
             case "decimal":
+            case "bigdecimal":
                 return null;
             default:
                 throw new RuntimeException("Unsupported type " + dataType);
@@ -173,6 +175,7 @@ public final class ConvertUtil implements Serializable {
             case "binary":
                 return StringUtils.isEmpty(value) ? null : Byte.parseByte(value);
             case "decimal":
+            case "bigdecimal":
                 return StringUtils.isEmpty(value) ? BigDecimal.ZERO : new BigDecimal(value);
             case "object":
                 return value;
@@ -218,6 +221,7 @@ public final class ConvertUtil implements Serializable {
                 return Byte.class;
             case "decimal":
             case "legacy":
+            case "bigdecimal":
                 return BigDecimal.class;
             case "object":
                 return Object.class;
@@ -303,6 +307,7 @@ public final class ConvertUtil implements Serializable {
             case "binary":
                 return Types.BINARY;
             case "decimal":
+            case "bigdecimal":
                 return Types.DECIMAL;
             case "object":
                 return Types.BLOB;
