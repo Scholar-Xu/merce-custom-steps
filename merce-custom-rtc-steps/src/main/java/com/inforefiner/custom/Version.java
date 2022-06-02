@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Version implements Serializable {
 
-    public static final String version = "017";
+    public static final String version = "018";
 
     private static final long serialVersionUID = 4279063211361949994L;
 }
