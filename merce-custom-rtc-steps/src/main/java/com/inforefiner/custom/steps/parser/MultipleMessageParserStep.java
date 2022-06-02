@@ -54,7 +54,11 @@ public class MultipleMessageParserStep extends Step<MultipleMessageParserSetting
                 .flatMap(parserMessageFunction)
                 .returns(rowTypeInfo)
                 .setParallelism(settings.getOrElse("parallelism", 0))
+                .slotSharingGroup(settings.getSlotSharingGroup())
                 .uid(this.id);
+        if (!settings.getOperateChain()) {
+            result.disableChaining();
+        }
         this.addOutput(result);
     }
 
@@ -127,5 +131,12 @@ class MultipleMessageParserSettings extends StepSettings {
     private String messageSeparator = "";
 
     private SchemaMiniDesc schema;
+    
+    @Setting(required = false, advanced = true, defaultValue = "default", description = "slot共享组的名称")
+    private String slotSharingGroup = "default";
+    
+    @Setting(required = false, advanced = true, defaultValue = "true", values = {"true", "false"},
+            description = "flink中的chaining开关，默认打开")
+    private Boolean operateChain = true;
 
 }
