@@ -6,7 +6,7 @@
 
     <groupId>com.inforefiner.example</groupId>
     <artifactId>merce-custom-steps</artifactId>
-    <version>0.1.9-snapshot</version>
+    <version>0.1.9</version>
     <packaging>pom</packaging>
     <name>Woven::Custom-Steps</name>
 

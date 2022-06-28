@@ -44,7 +44,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.apache.flink.api.java.io.jdbc.JDBCUtils.setRecordToStatement;
+import static org.apache.flink.connector.jdbc.utils.JdbcUtils.setRecordToStatement;
 
 /**
  * OutputFormat to write Rows into a JDBC database.
