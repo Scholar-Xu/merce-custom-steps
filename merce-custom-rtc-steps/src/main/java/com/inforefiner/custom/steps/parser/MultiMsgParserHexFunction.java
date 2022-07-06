@@ -144,8 +144,8 @@ public class MultiMsgParserHexFunction extends RichFlatMapFunction<Row, Row> {
     private Message extractMessage(String message, String[] headers, String headerSeparator) {
         Message msg = null;
         if (message.contains(headerSeparator)) {
-            String[] msgArray = message.split(headerSeparator, -1);
-            String msgHead = msgArray[0], msgBody = msgArray[1];
+            String msgHead = message.substring(0, message.indexOf(headerSeparator));
+            String msgBody = message.substring(message.indexOf(headerSeparator) + 1);
             if (ArrayUtils.isNotEmpty(headers)) {
                 if (ArrayUtils.contains(headers, msgHead)) {
                     msg = new Message(msgHead, msgBody);
