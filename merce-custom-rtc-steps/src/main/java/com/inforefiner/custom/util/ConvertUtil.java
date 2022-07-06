@@ -52,38 +52,38 @@ public final class ConvertUtil implements Serializable {
         }
         switch (dataType.toLowerCase()) {
             case "string":
-                return StringUtils.isEmpty(value) ? "" : value.trim();
+                return StringUtils.isEmpty(value) ? "" : value;
             case "byte":
-                return StringUtils.isEmpty(value) ? "" : Byte.parseByte(value);
+                return StringUtils.isBlank(value) ? "" : Byte.parseByte(value);
             case "short":
-                return StringUtils.isEmpty(value) ? null : Short.parseShort(value);
+                return StringUtils.isBlank(value) ? null : Short.parseShort(value);
             case "integer":
-                return StringUtils.isEmpty(value) ? null : Integer.parseInt(value);
+                return StringUtils.isBlank(value) ? null : Integer.parseInt(value);
             case "int":
-                return StringUtils.isEmpty(value) ? null : Integer.parseInt(value);
+                return StringUtils.isBlank(value) ? null : Integer.parseInt(value);
             case "bigint":
-                return StringUtils.isEmpty(value) ? null : Long.parseLong(value);
+                return StringUtils.isBlank(value) ? null : Long.parseLong(value);
             case "long":
-                return StringUtils.isEmpty(value) ? null : Long.parseLong(value);
+                return StringUtils.isBlank(value) ? null : Long.parseLong(value);
             case "float":
-                return StringUtils.isEmpty(value) ? null : Float.parseFloat(value);
+                return StringUtils.isBlank(value) ? null : Float.parseFloat(value);
             case "double":
-                return StringUtils.isEmpty(value) ? null : Double.parseDouble(value);
+                return StringUtils.isBlank(value) ? null : Double.parseDouble(value);
             case "bool":
-                return StringUtils.isEmpty(value) ? null : Boolean.parseBoolean(value);
+                return StringUtils.isBlank(value) ? null : Boolean.parseBoolean(value);
             case "boolean":
-                return StringUtils.isEmpty(value) ? null : Boolean.parseBoolean(value);
+                return StringUtils.isBlank(value) ? null : Boolean.parseBoolean(value);
             case "date":
-                return StringUtils.isEmpty(value) ? null : Date.valueOf(value);
+                return StringUtils.isBlank(value) ? null : Date.valueOf(value);
             case "datetype":
-                return StringUtils.isEmpty(value) ? null : Date.valueOf(value);
+                return StringUtils.isBlank(value) ? null : Date.valueOf(value);
             case "timestamp":
-                return StringUtils.isEmpty(value) ? null : Timestamp.valueOf(value);
+                return StringUtils.isBlank(value) ? null : Timestamp.valueOf(value);
             case "binary":
-                return StringUtils.isEmpty(value) ? "" : Byte.parseByte(value);
+                return StringUtils.isBlank(value) ? "" : Byte.parseByte(value);
             case "decimal":
             case "bigdecimal":
-                return StringUtils.isEmpty(value) ? BigDecimal.ZERO : new BigDecimal(value);
+                return StringUtils.isBlank(value) ? BigDecimal.ZERO : new BigDecimal(value);
             default:
                 throw new RuntimeException("Unsupported type " + dataType);
         }
@@ -145,38 +145,38 @@ public final class ConvertUtil implements Serializable {
         }
         switch (dataType.toLowerCase()) {
             case "string":
-                return StringUtils.isEmpty(value) ? "" : value.trim();
+                return StringUtils.isEmpty(value) ? "" : value;
             case "byte":
-                return StringUtils.isEmpty(value) ? "" : Byte.parseByte(value);
+                return StringUtils.isBlank(value) ? "" : Byte.parseByte(value);
             case "short":
-                return StringUtils.isEmpty(value) ? 0 : Short.parseShort(value);
+                return StringUtils.isBlank(value) ? 0 : Short.parseShort(value);
             case "integer":
-                return StringUtils.isEmpty(value) ? 0 : Integer.parseInt(value);
+                return StringUtils.isBlank(value) ? 0 : Integer.parseInt(value);
             case "int":
-                return StringUtils.isEmpty(value) ? 0 : Integer.parseInt(value);
+                return StringUtils.isBlank(value) ? 0 : Integer.parseInt(value);
             case "bigint":
-                return StringUtils.isEmpty(value) ? 0l : Long.parseLong(value);
+                return StringUtils.isBlank(value) ? 0L : Long.parseLong(value);
             case "long":
-                return StringUtils.isEmpty(value) ? 0l : Long.parseLong(value);
+                return StringUtils.isBlank(value) ? 0L : Long.parseLong(value);
             case "float":
-                return StringUtils.isEmpty(value) ? 0f : Float.parseFloat(value);
+                return StringUtils.isBlank(value) ? 0f : Float.parseFloat(value);
             case "double":
-                return StringUtils.isEmpty(value) ? 0.0 : Double.parseDouble(value);
+                return StringUtils.isBlank(value) ? 0.0 : Double.parseDouble(value);
             case "bool":
-                return StringUtils.isEmpty(value) ? false : Boolean.parseBoolean(value);
+                return StringUtils.isBlank(value) ? false : Boolean.parseBoolean(value);
             case "boolean":
-                return StringUtils.isEmpty(value) ? false : Boolean.parseBoolean(value);
+                return StringUtils.isBlank(value) ? false : Boolean.parseBoolean(value);
             case "date":
-                return StringUtils.isEmpty(value) ? null : Date.valueOf(value);
+                return StringUtils.isBlank(value) ? null : Date.valueOf(value);
             case "datetype":
-                return StringUtils.isEmpty(value) ? null : Date.valueOf(value);
+                return StringUtils.isBlank(value) ? null : Date.valueOf(value);
             case "timestamp":
-                return StringUtils.isEmpty(value) ? null : Timestamp.valueOf(value);
+                return StringUtils.isBlank(value) ? null : Timestamp.valueOf(value);
             case "binary":
-                return StringUtils.isEmpty(value) ? null : Byte.parseByte(value);
+                return StringUtils.isBlank(value) ? null : Byte.parseByte(value);
             case "decimal":
             case "bigdecimal":
-                return StringUtils.isEmpty(value) ? BigDecimal.ZERO : new BigDecimal(value);
+                return StringUtils.isBlank(value) ? BigDecimal.ZERO : new BigDecimal(value);
             case "object":
                 return value;
             default:
