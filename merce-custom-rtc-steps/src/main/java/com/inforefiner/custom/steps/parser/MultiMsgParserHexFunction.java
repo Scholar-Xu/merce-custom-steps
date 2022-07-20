@@ -34,6 +34,8 @@ public class MultiMsgParserHexFunction extends RichFlatMapFunction<Row, Row> {
     private String messageSeparator;
     private String separator;
 
+    private boolean ignoreCheckFieldSize;
+
     //metrics
     private Counter inputCounter;
     private Counter outputCounter;
@@ -54,6 +56,7 @@ public class MultiMsgParserHexFunction extends RichFlatMapFunction<Row, Row> {
             String messageSeparator = settings.getMessageSeparator();
             String separator = settings.getSeparator();
             Boolean hex = settings.getHex();
+            ignoreCheckFieldSize = settings.getIgnoreCheckFieldSize();
             log.info("-------- origin configuration --------");
             log.info("headers: {}", headers);
             log.info("headerSeparator: {}", headerSeparator);
@@ -61,6 +64,7 @@ public class MultiMsgParserHexFunction extends RichFlatMapFunction<Row, Row> {
             log.info("messageSeparator: {}", messageSeparator);
             log.info("separator: {}", separator);
             log.info("hex: {}", hex);
+            log.info("ignoreCheckFieldSize: {}", ignoreCheckFieldSize);
 
             boolean headerNotBlank = StringUtils.isNotEmpty(headers);
             this.headers = headerNotBlank ? StringUtils.split(headers, ',') : new String[0];
@@ -240,22 +244,34 @@ public class MultiMsgParserHexFunction extends RichFlatMapFunction<Row, Row> {
      * @return
      */
     private boolean validateMessage(String sourceMsg, String header, String[] columns) {
-        if (StringUtils.isEmpty(header) && columns.length != arity) {
-            colMismatchCounter.inc();
-            log.error("Length is not enough! The number of fields without header is {}, but got {}", arity, columns.length);
-            log.error("Skip message {}, separator is {}, because the number of fields does not match.", sourceMsg, separator);
-            log.error("split data is {}", StringUtils.join(columns, ";"));
-            return false;
-        } else if (StringUtils.isNotEmpty(header) && columns.length + 1 != arity) {
-            colMismatchCounter.inc();
-            log.error("Length is not enough! The Number of fields containing header is {}, but got {}", arity + 1, columns.length);
-            log.error("Skip message {}, separator is {}, because the number of fields does not match.", sourceMsg, separator);
-            log.error("split data is {}", StringUtils.join(columns, ";"));
-            return false;
-        } else if (log.isDebugEnabled()) {
+        if (!ignoreCheckFieldSize) {
+            if (StringUtils.isEmpty(header) && columns.length != arity) {
+                logValidateMessage(columns.length, sourceMsg, StringUtils.join(columns, ";"));
+                return false;
+            } else if (StringUtils.isNotEmpty(header) && columns.length + 1 != arity) {
+                logValidateMessage(columns.length + 1, sourceMsg, StringUtils.join(columns, ";"));
+                return false;
+            }
+        } else {
+            if (StringUtils.isEmpty(header) && columns.length < arity) {
+                logValidateMessage(columns.length, sourceMsg, StringUtils.join(columns, ";"));
+                return false;
+            } else if (StringUtils.isNotEmpty(header) && columns.length + 1 < arity) {
+                logValidateMessage(columns.length + 1, sourceMsg, StringUtils.join(columns, ";"));
+                return false;
+            }
+        }
+        if (log.isDebugEnabled()) {
             log.debug(Arrays.toString(columns));
         }
         return true;
+    }
+
+    private void logValidateMessage(int gotSize, String sourceMsg, String columns) {
+        colMismatchCounter.inc();
+        log.error("Length is not enough! The Number of fields containing header is {}, but got {}", arity, gotSize);
+        log.error("Skip message {}, separator is {}, because the number of fields does not match.", sourceMsg, separator);
+        log.error("split data is {}", columns);
     }
 
     /**
