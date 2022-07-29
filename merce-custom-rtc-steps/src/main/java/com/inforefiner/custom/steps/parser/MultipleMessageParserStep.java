@@ -139,6 +139,6 @@ class MultipleMessageParserSettings extends StepSettings {
             description = "flink中的chaining开关，默认打开")
     private Boolean operateChain = true;
 
-    @Setting(required = false, advanced = true, defaultValue = "false", description = "是否忽略检查实际字段个数，默认不忽略")
+    @Setting(required = false, advanced = true, defaultValue = "false", values = {"true", "false"}, description = "是否忽略检查实际字段个数，默认不忽略")
     private Boolean ignoreCheckFieldSize = false;
 }
